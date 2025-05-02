@@ -1,6 +1,7 @@
 from stats import get_num_words
 from stats import letter_count
 from stats import data_sort
+import sys
 
 def get_book_text(filepath):
     with open(filepath) as f:
@@ -8,7 +9,12 @@ def get_book_text(filepath):
         return contents
 
 def main():
-    relative_path = "./books/frankenstein.txt"
+
+    if len(sys.argv) < 2:
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
+
+    relative_path = sys.argv[1]
     book_text = get_book_text(relative_path)
     num_words = get_num_words(book_text)
 
